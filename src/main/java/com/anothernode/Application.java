@@ -22,13 +22,60 @@
 
 package com.anothernode;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
+/**
+ * TODO
+ */
 @SpringBootApplication
 public class Application {
+    
+    private static final Logger log = LoggerFactory.getLogger(Application.class);
+    
+    private Application() {}
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+    }
+    
+    @Bean
+    public CommandLineRunner loadData(PlayerRepository repository) {
+        return args -> {
+            // save a couple of customers
+            repository.save(new Player("Ludwig", "Wittgenstein"));
+            repository.save(new Player("Hannah", "Arendt"));
+            repository.save(new Player("Ayn", "Rand"));
+            repository.save(new Player("Friedrich", "Nietzsche"));
+            repository.save(new Player("Jean-Paul", "Sartre"));
+
+            // fetch all customers
+            log.info("Players found with findAll():");
+            log.info("-------------------------------");
+            for (Player player : repository.findAll()) {
+                log.info(player.toString());
+            }
+            log.info("");
+
+            // fetch an individual customer by ID
+            Player player = repository.findOne(1L);
+            log.info("Customer found with findOne(1L):");
+            log.info("--------------------------------");
+            log.info(player.toString());
+            log.info("");
+
+            // fetch customers by last name
+            log.info("Customer found with findByLastNameStartsWithIgnoreCase('Nietzsche'):");
+            log.info("--------------------------------------------");
+            for (Player nietzsche : repository
+                    .findByLastNameStartsWithIgnoreCase("Nietzsche")) {
+                log.info(nietzsche.toString());
+            }
+            log.info("");
+        };
     }
 }
