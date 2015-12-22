@@ -37,8 +37,6 @@ public class Application {
     
     private static final Logger log = LoggerFactory.getLogger(Application.class);
     
-    private Application() {}
-
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
