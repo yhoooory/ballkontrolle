@@ -27,6 +27,8 @@ repositories {
     mavenCentral()
     maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
     maven { url "http://oss.sonatype.org/content/repositories/vaadin-snapshots/" }
+    maven { url "https://m2.neo4j.org" }
+    maven { url "https://repo.spring.io/libs-release" }
 }
 
 sourceCompatibility = 1.8
@@ -39,8 +41,14 @@ dependencyManagement {
 }
 
 dependencies {
-    compile('com.vaadin:vaadin-spring-boot-starter:1.0.0')
+    compile("javax.el:javax.el-api:2.2.4")
+    compile("org.springframework:spring-context")
+    compile("org.springframework:spring-tx")
+    compile("org.springframework.boot:spring-boot-starter")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.data:spring-data-neo4j")
+    compile("org.hibernate:hibernate-validator")
+    compile('com.vaadin:vaadin-spring-boot-starter:1.0.0')
     compile("com.h2database:h2")
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile("junit:junit")
