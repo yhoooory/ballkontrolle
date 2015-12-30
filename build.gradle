@@ -27,7 +27,7 @@ repositories {
     mavenCentral()
     maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
     maven { url "http://oss.sonatype.org/content/repositories/vaadin-snapshots/" }
-    maven { url "https://m2.neo4j.org" }
+    maven { url "http://m2.neo4j.org/content/repositories/releases/" }
     maven { url "https://repo.spring.io/libs-release" }
 }
 
