@@ -35,7 +35,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class Application {
     
-    private static final Logger log = LoggerFactory.getLogger(Application.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
     
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -52,28 +52,28 @@ public class Application {
             repository.save(new Player("Jean-Paul", "Sartre"));
 
             // fetch all customers
-            log.info("Players found with findAll():");
-            log.info("-------------------------------");
+            LOGGER.info("Players found with findAll():");
+            LOGGER.info("-------------------------------");
             for (Player player : repository.findAll()) {
-                log.info(player.toString());
+                LOGGER.info(player.toString());
             }
-            log.info("");
+            LOGGER.info("");
 
             // fetch an individual customer by ID
             Player player = repository.findOne(1L);
-            log.info("Customer found with findOne(1L):");
-            log.info("--------------------------------");
-            log.info(player.toString());
-            log.info("");
+            LOGGER.info("Customer found with findOne(1L):");
+            LOGGER.info("--------------------------------");
+            LOGGER.info(player.toString());
+            LOGGER.info("");
 
             // fetch customers by last name
-            log.info("Customer found with findByLastNameStartsWithIgnoreCase('Nietzsche'):");
-            log.info("--------------------------------------------");
+            LOGGER.info("Customer found with findByLastNameStartsWithIgnoreCase('Nietzsche'):");
+            LOGGER.info("--------------------------------------------");
             for (Player nietzsche : repository
                     .findByLastNameStartsWithIgnoreCase("Nietzsche")) {
-                log.info(nietzsche.toString());
+                LOGGER.info(nietzsche.toString());
             }
-            log.info("");
+            LOGGER.info("");
         };
     }
 }
